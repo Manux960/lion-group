@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lion Group — Dashboard Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="dashboard-page">
+
+  <!-- Auth guard (inline for static site) -->
+  <script>
+    if (sessionStorage.getItem('lg_admin_auth') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/logo/logo.png" alt="Lion Group" />
+      <span>Admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Sezioni Sito</div>
+
+      <a href="#" class="sidebar-link active" data-panel="hero">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Hero
+      </a>
+      <a href="#" class="sidebar-link" data-panel="services">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+        Servizi
+      </a>
+      <a href="#" class="sidebar-link" data-panel="pillars">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="5" height="18" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9.5" y="3" width="5" height="18" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="3" width="5" height="18" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+        Sezione Pillars
+      </a>
+      <a href="#" class="sidebar-link" data-panel="investments">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 17L9 11L13 15L21 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 7H21V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Investimenti
+      </a>
+      <a href="#" class="sidebar-link" data-panel="about">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20C4 16.69 7.58 14 12 14C16.42 14 20 16.69 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Chi Siamo
+      </a>
+      <a href="#" class="sidebar-link" data-panel="contact">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5"/><path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="1.5"/></svg>
+        Contatti
+      </a>
+      <a href="#" class="sidebar-link" data-panel="footer">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 20H21M3 4H21M5 4V20M19 4V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Footer
+      </a>
+
+      <div class="nav-section-label" style="margin-top:24px;">Sistema</div>
+      <a href="#" class="sidebar-link" data-panel="settings">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15Z" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15C19.7 14.4 19.85 13.71 19.85 13C19.85 12.29 19.7 11.6 19.4 11L21.45 8.95L19.05 6.55L17 8.6C15.8 7.95 14.43 7.59 13 7.59V4.85H11V7.59C9.57 7.59 8.2 7.95 7 8.6L4.95 6.55L2.55 8.95L4.6 11C4.3 11.6 4.15 12.29 4.15 13C4.15 13.71 4.3 14.4 4.6 15L2.55 17.05L4.95 19.45L7 17.4C8.2 18.05 9.57 18.41 11 18.41V21.15H13V18.41C14.43 18.41 15.8 18.05 17 17.4L19.05 19.45L21.45 17.05L19.4 15Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        Impostazioni
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../index.html" target="_blank" class="sidebar-preview-btn">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 13V19C18 20.1 17.1 21 16 21H5C3.9 21 3 20.1 3 19V8C3 6.9 3.9 6 5 6H11" stroke="currentColor" stroke-width="1.5"/><path d="M15 3H21V9M10 14L21 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Visualizza Sito
+      </a>
+      <button class="sidebar-logout" id="logoutBtn">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 21H5C4.47 21 3.96 20.79 3.59 20.41C3.21 20.04 3 19.53 3 19V5C3 4.47 3.21 3.96 3.59 3.59C3.96 3.21 4.47 3 5 3H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 17L21 12L16 7M21 12H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Esci
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="breadcrumb" id="breadcrumb">
+          <span>Dashboard</span>
+          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="breadcrumb-active" id="breadcrumbActive">Hero</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="save-indicator" id="saveIndicator">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Salvato
+        </div>
+        <div class="admin-badge">
+          <div class="admin-avatar">A</div>
+          <span>Admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── PANELS ── -->
+    <div class="panels-container">
+
+      <!-- ══ HERO ══ -->
+      <div class="panel active" id="panel-hero">
+        <div class="panel-header">
+          <h1 class="panel-title">Hero Section</h1>
+          <p class="panel-desc">Modifica i testi e l'immagine di sfondo della sezione principale.</p>
+        </div>
+        <div class="panel-grid">
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Testi Hero</h3>
+              <div class="field-group">
+                <label>Eyebrow (sopra il titolo)</label>
+                <input type="text" data-field="hero.eyebrow" placeholder="LION GROUP" />
+              </div>
+              <div class="field-group">
+                <label>Titolo — Riga 1</label>
+                <input type="text" data-field="hero.title1" placeholder="EXCELLENCE" />
+              </div>
+              <div class="field-group">
+                <label>Titolo — Riga 2 <span class="field-note">(outline)</span></label>
+                <input type="text" data-field="hero.title2" placeholder="BEYOND" />
+              </div>
+              <div class="field-group">
+                <label>Titolo — Riga 3 <span class="field-note">(oro)</span></label>
+                <input type="text" data-field="hero.title3" placeholder="LIMITS." />
+              </div>
+              <div class="field-group">
+                <label>Sottotitolo</label>
+                <textarea rows="2" data-field="hero.subtitle" placeholder="Il gruppo che definisce il lusso..."></textarea>
+              </div>
+              <div class="field-group">
+                <label>Testo pulsante principale</label>
+                <input type="text" data-field="hero.cta1" placeholder="Scopri i Servizi" />
+              </div>
+              <div class="field-group">
+                <label>Testo pulsante secondario</label>
+                <input type="text" data-field="hero.cta2" placeholder="Contattaci" />
+              </div>
+            </div>
+          </div>
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Immagine di Sfondo</h3>
+              <div class="field-group">
+                <label>URL Immagine Hero</label>
+                <input type="url" data-field="hero.image" placeholder="https://images.pexels.com/photos/..." />
+                <span class="field-hint">Inserisci l'URL diretto dell'immagine (Pexels, CDN, ecc.)</span>
+              </div>
+              <div class="img-preview" id="heroImgPreview">
+                <img src="../assets/images/hero-bg.jpg" alt="Preview" id="heroImgPreviewImg" style="object-position: center 78%;" />
+                <span>Anteprima corrente</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn-save" data-section="hero">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C4.47 21 3.96 20.79 3.59 20.41C3.21 20.04 3 19.53 3 19V5C3 4.47 3.21 3.96 3.59 3.59C3.96 3.21 4.47 3 5 3H16L21 8V19C21 19.53 20.79 20.04 20.41 20.41C20.04 20.79 19.53 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Hero
+          </button>
+          <button class="btn-reset" data-section="hero">Ripristina Default</button>
+        </div>
+      </div>
+
+      <!-- ══ SERVIZI ══ -->
+      <div class="panel" id="panel-services">
+        <div class="panel-header">
+          <h1 class="panel-title">Servizi</h1>
+          <p class="panel-desc">Modifica i titoli e le descrizioni delle 4 divisioni principali di Lion Group.</p>
+        </div>
+
+        <div class="panel-grid-full">
+          <div class="form-card">
+            <h3 class="card-title">Intestazione Sezione</h3>
+            <div class="field-row">
+              <div class="field-group">
+                <label>Label sezione</label>
+                <input type="text" data-field="section.services.label" placeholder="COSA FACCIAMO" />
+              </div>
+              <div class="field-group">
+                <label>Titolo Sezione</label>
+                <input type="text" data-field="section.services.title" placeholder="Un Universo di Servizi" />
+              </div>
+              <div class="field-group">
+                <label>Descrizione</label>
+                <textarea rows="2" data-field="section.services.desc" placeholder="Lion Group unisce..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="servicesCards">
+          <!-- Generated by JS -->
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn-save" data-section="services">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C4.47 21 3.96 20.79 3.59 20.41C3.21 20.04 3 19.53 3 19V5C3 4.47 3.21 3.96 3.59 3.59C3.96 3.21 4.47 3 5 3H16L21 8V19C21 19.53 20.79 20.04 20.41 20.41C20.04 20.79 19.53 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Servizi
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ PILLARS ══ -->
+      <div class="panel" id="panel-pillars">
+        <div class="panel-header">
+          <h1 class="panel-title">Sezione Pillars (Automotive)</h1>
+          <p class="panel-desc">Modifica le 3 colonne della sezione a schermo intero dopo i servizi.</p>
+        </div>
+        <div id="pillarsEditor">
+          <!-- Generated by JS -->
+        </div>
+        <div class="panel-actions">
+          <button class="btn-save" data-section="pillars">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16L21 8V19C21 20.1 20.1 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Pillars
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ INVESTIMENTI ══ -->
+      <div class="panel" id="panel-investments">
+        <div class="panel-header">
+          <h1 class="panel-title">Sezione Investimenti</h1>
+          <p class="panel-desc">Modifica testi, numeri e immagine della sezione Investimenti & Real Estate.</p>
+        </div>
+        <div class="panel-grid">
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Testi Principali</h3>
+              <div class="field-group">
+                <label>Label sezione</label>
+                <input type="text" data-field="investments.label" placeholder="INVESTIMENTI" />
+              </div>
+              <div class="field-group">
+                <label>Titolo</label>
+                <input type="text" data-field="investments.title" placeholder="Fai Crescere il Tuo Patrimonio" />
+              </div>
+              <div class="field-group">
+                <label>Descrizione</label>
+                <textarea rows="3" data-field="investments.desc" placeholder="Lion Group gestisce un fondo..."></textarea>
+              </div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Feature 1 — Startup Fund</h3>
+              <div class="field-group">
+                <label>Titolo</label>
+                <input type="text" data-field="investments.feat0title" placeholder="Startup Fund" />
+              </div>
+              <div class="field-group">
+                <label>Descrizione</label>
+                <textarea rows="2" data-field="investments.feat0desc" placeholder="Investiamo in startup..."></textarea>
+              </div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Feature 2 — Real Estate</h3>
+              <div class="field-group">
+                <label>Titolo</label>
+                <input type="text" data-field="investments.feat1title" placeholder="Real Estate Premium" />
+              </div>
+              <div class="field-group">
+                <label>Descrizione</label>
+                <textarea rows="2" data-field="investments.feat1desc" placeholder="Portfolio immobiliare..."></textarea>
+              </div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Feature 3 — ROI</h3>
+              <div class="field-group">
+                <label>Titolo</label>
+                <input type="text" data-field="investments.feat2title" placeholder="ROI Strategico" />
+              </div>
+              <div class="field-group">
+                <label>Descrizione</label>
+                <textarea rows="2" data-field="investments.feat2desc" placeholder="Rendimenti competitivi..."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Card Startup</h3>
+              <div class="field-group">
+                <label>Numero (es. 12)</label>
+                <input type="text" data-field="investments.startupNum" placeholder="12" />
+              </div>
+              <div class="field-group">
+                <label>Etichetta (es. Startup nel Portfolio)</label>
+                <input type="text" data-field="investments.startupLabel" placeholder="Startup nel Portfolio" />
+              </div>
+              <div class="field-group">
+                <label>Testo meta (es. +72% performance media)</label>
+                <input type="text" data-field="investments.startupMeta" placeholder="+72% performance media" />
+              </div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Card Real Estate</h3>
+              <div class="field-group">
+                <label>Numero (es. 28)</label>
+                <input type="text" data-field="investments.reNum" placeholder="28" />
+              </div>
+              <div class="field-group">
+                <label>Etichetta (es. Proprietà Gestite)</label>
+                <input type="text" data-field="investments.reLabel" placeholder="Proprietà Gestite" />
+              </div>
+              <div class="field-group">
+                <label>Testo meta (es. +18% yield annuo medio)</label>
+                <input type="text" data-field="investments.reMeta" placeholder="+18% yield annuo medio" />
+              </div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Immagine Sezione</h3>
+              <div class="field-group">
+                <label>URL Immagine</label>
+                <input type="url" data-field="investments.image" placeholder="https://images.pexels.com/photos/..." />
+              </div>
+              <div class="img-preview" id="investImgPreview">
+                <img src="https://images.pexels.com/photos/29453302/pexels-photo-29453302.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Preview" id="investImgPreviewImg" />
+                <span>Anteprima corrente</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn-save" data-section="investments">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16L21 8V19C21 20.1 20.1 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Investimenti
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ CHI SIAMO ══ -->
+      <div class="panel" id="panel-about">
+        <div class="panel-header">
+          <h1 class="panel-title">Chi Siamo</h1>
+          <p class="panel-desc">Modifica tutti i contenuti della sezione "Chi Siamo".</p>
+        </div>
+        <div class="panel-grid">
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Testi</h3>
+              <div class="field-group">
+                <label>Label sezione</label>
+                <input type="text" data-field="about.label" placeholder="CHI SIAMO" />
+              </div>
+              <div class="field-group">
+                <label>Titolo</label>
+                <input type="text" data-field="about.title" placeholder="Chi Siamo" />
+              </div>
+              <div class="field-group">
+                <label>Testo introduttivo (corsivo)</label>
+                <textarea rows="3" data-field="about.lead" placeholder="Lion Group è un gruppo imprenditoriale..."></textarea>
+              </div>
+              <div class="field-group">
+                <label>Testo corpo</label>
+                <textarea rows="5" data-field="about.body" placeholder="La nostra missione è affiancare..."></textarea>
+              </div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Card Citazione</h3>
+              <div class="field-group">
+                <label>Testo citazione</label>
+                <input type="text" data-field="about.quoteText" placeholder="Il vero lusso è avere qualcuno di fiducia al tuo fianco." />
+              </div>
+              <div class="field-group">
+                <label>Autore citazione</label>
+                <input type="text" data-field="about.quoteAuthor" placeholder="— Lion Group" />
+              </div>
+            </div>
+          </div>
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Immagine Sfondo (Yacht)</h3>
+              <div class="field-group">
+                <label>URL Immagine Sfondo</label>
+                <input type="url" data-field="about.imgBg" placeholder="https://images.pexels.com/photos/..." />
+                <span class="field-hint">Immagine dello yacht visibile dietro il logo.</span>
+              </div>
+              <div class="img-preview" id="aboutImgPreview">
+                <img src="https://images.pexels.com/photos/6752179/pexels-photo-6752179.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Preview" id="aboutImgPreviewImg" />
+                <span>Anteprima corrente</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn-save" data-section="about">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16L21 8V19C21 20.1 20.1 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Chi Siamo
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ CONTATTI ══ -->
+      <div class="panel" id="panel-contact">
+        <div class="panel-header">
+          <h1 class="panel-title">Sezione Contatti</h1>
+          <p class="panel-desc">Modifica testi, dati aziendali e social media.</p>
+        </div>
+        <div class="panel-grid">
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Intestazione Sezione</h3>
+              <div class="field-group">
+                <label>Label</label>
+                <input type="text" data-field="contact.label" placeholder="CONTATTI" />
+              </div>
+              <div class="field-group">
+                <label>Titolo</label>
+                <input type="text" data-field="contact.sectionTitle" placeholder="Inizia la Tua Esperienza Lion" />
+              </div>
+              <div class="field-group">
+                <label>Descrizione</label>
+                <textarea rows="2" data-field="contact.sectionDesc" placeholder="Che tu voglia acquistare..."></textarea>
+              </div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Dati Aziendali</h3>
+              <div class="field-group">
+                <label>Indirizzo</label>
+                <input type="text" data-field="contact.address" placeholder="Via Merulana 247, Roma" />
+              </div>
+              <div class="field-group">
+                <label>Email</label>
+                <input type="email" data-field="contact.email" placeholder="info@liongroupsrl.it" />
+              </div>
+            </div>
+          </div>
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Social Media</h3>
+              <div class="field-group">
+                <label>Instagram URL</label>
+                <input type="url" data-field="social.instagram" placeholder="https://instagram.com/liongroup" />
+              </div>
+              <div class="field-group">
+                <label>LinkedIn URL</label>
+                <input type="url" data-field="social.linkedin" placeholder="https://linkedin.com/company/liongroup" />
+              </div>
+              <div class="field-group">
+                <label>Facebook URL</label>
+                <input type="url" data-field="social.facebook" placeholder="https://facebook.com/liongroup" />
+              </div>
+              <div class="field-group">
+                <label>YouTube URL</label>
+                <input type="url" data-field="social.youtube" placeholder="https://youtube.com/@liongroup" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn-save" data-section="contact">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16L21 8V19C21 20.1 20.1 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Contatti
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ FOOTER ══ -->
+      <div class="panel" id="panel-footer">
+        <div class="panel-header">
+          <h1 class="panel-title">Footer</h1>
+          <p class="panel-desc">Modifica i testi del footer e le voci dei menu.</p>
+        </div>
+        <div class="panel-grid">
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Brand</h3>
+              <div class="field-group">
+                <label>Tagline</label>
+                <input type="text" data-field="footer.tagline" placeholder="Excellence Beyond Limits." />
+              </div>
+              <div class="field-group">
+                <label>Descrizione aziendale</label>
+                <textarea rows="3" data-field="footer.desc" placeholder="Il gruppo italiano che unisce..."></textarea>
+              </div>
+              <div class="field-group">
+                <label>Copyright</label>
+                <input type="text" data-field="footer.copyright" placeholder="© 2025 Lion Group S.r.l. — Tutti i diritti riservati" />
+              </div>
+            </div>
+          </div>
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Colonna Automotive</h3>
+              <div class="field-group"><label>Voce 1</label><input type="text" data-field="footer.auto1" placeholder="Vendita Auto Premium" /></div>
+              <div class="field-group"><label>Voce 2</label><input type="text" data-field="footer.auto2" placeholder="Noleggio a Breve Termine" /></div>
+              <div class="field-group"><label>Voce 3</label><input type="text" data-field="footer.auto3" placeholder="Noleggio a Lungo Termine" /></div>
+              <div class="field-group"><label>Voce 4</label><input type="text" data-field="footer.auto4" placeholder="Permuta Veicoli" /></div>
+              <div class="field-group"><label>Voce 5</label><input type="text" data-field="footer.auto5" placeholder="Finanziamento Auto" /></div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Colonna Investimenti</h3>
+              <div class="field-group"><label>Voce 1</label><input type="text" data-field="footer.inv1" placeholder="Startup Fund" /></div>
+              <div class="field-group"><label>Voce 2</label><input type="text" data-field="footer.inv2" placeholder="Real Estate" /></div>
+              <div class="field-group"><label>Voce 3</label><input type="text" data-field="footer.inv3" placeholder="Portfolio" /></div>
+              <div class="field-group"><label>Voce 4</label><input type="text" data-field="footer.inv4" placeholder="Advisory" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn-save" data-section="footer">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16L21 8V19C21 20.1 20.1 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Footer
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ IMPOSTAZIONI ══ -->
+      <div class="panel" id="panel-settings">
+        <div class="panel-header">
+          <h1 class="panel-title">Impostazioni</h1>
+          <p class="panel-desc">Configurazione generale del sito e del pannello admin.</p>
+        </div>
+        <div class="panel-grid">
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Sito</h3>
+              <div class="field-group">
+                <label>Nome Azienda</label>
+                <input type="text" data-field="site.name" placeholder="Lion Group" />
+              </div>
+              <div class="field-group">
+                <label>Tagline</label>
+                <input type="text" data-field="site.tagline" placeholder="Excellence Beyond Limits." />
+              </div>
+              <div class="field-group">
+                <label>Meta Description</label>
+                <textarea rows="2" data-field="site.metaDesc" placeholder="Lion Group: automotive di lusso, investimenti e real estate."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="panel-col">
+            <div class="form-card">
+              <h3 class="card-title">Sicurezza</h3>
+              <div class="field-group">
+                <label>Nuova Password Admin</label>
+                <input type="password" id="newPassword" placeholder="Nuova password" />
+              </div>
+              <div class="field-group">
+                <label>Conferma Password</label>
+                <input type="password" id="confirmPassword" placeholder="Ripeti password" />
+              </div>
+              <button class="btn-save" id="changePasswordBtn" style="margin-top:16px;">
+                Aggiorna Password
+              </button>
+              <div class="password-msg" id="passwordMsg"></div>
+            </div>
+            <div class="form-card" style="margin-top:16px;">
+              <h3 class="card-title">Dati CMS</h3>
+              <p style="font-size:0.82rem;color:#666;margin-bottom:16px;">Esporta o resetta tutti i contenuti del CMS.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <button class="btn-secondary" id="exportBtn">
+                  <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M21 15V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V15M17 10L12 15L7 10M12 15V3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Esporta JSON
+                </button>
+                <button class="btn-danger" id="resetAllBtn">
+                  <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M3 6H21M19 6V20C19 21.1 18.1 22 17 22H7C5.9 22 5 21.1 5 20V6M8 6V4C8 2.9 8.9 2 10 2H14C15.1 2 16 2.9 16 4V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Reset Tutto
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn-save" data-section="site">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16L21 8V19C21 20.1 20.1 21 19 21Z" stroke="currentColor" stroke-width="1.5"/><path d="M17 21V13H7V21M7 3V8H15" stroke="currentColor" stroke-width="1.5"/></svg>
+            Salva Impostazioni
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end panels-container -->
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
