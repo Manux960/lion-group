@@ -423,6 +423,33 @@ class HeroParallax {
   }
 }
 
+// ── Hero Slider ─────────────────────────────────────
+class HeroSlider {
+  constructor() {
+    this.slides = $$('.hero-slide');
+    this.base = $('.hero-slide-base');
+    this.current = 0;
+    this.interval = null;
+  }
+
+  init() {
+    if (this.slides.length === 0) return;
+    
+    this.slides[0].classList.add('active');
+    this.startAutoPlay();
+  }
+
+  nextSlide() {
+    this.slides[this.current].classList.remove('active');
+    this.current = (this.current + 1) % this.slides.length;
+    this.slides[this.current].classList.add('active');
+  }
+
+  startAutoPlay() {
+    this.interval = setInterval(() => this.nextSlide(), 7000);
+  }
+}
+
 // ── Investment Bar Animation ───────────────────────
 class InvestmentBars {
   constructor() {
@@ -809,14 +836,14 @@ class HeroParticles {
 // ── App Entry Point ────────────────────────────────
 class LionGroupApp {
   constructor() {
-    this.modules = [
-      new ContentManager(),
+this.modules = [
       new PageLoader(),
       new CustomCursor(),
       new Navbar(),
       new ScrollReveal(),
       new CounterAnimation(),
       new HeroParallax(),
+      new HeroSlider(),
       new InvestmentBars(),
       new ContactForm(),
       new SmoothScroll(),
