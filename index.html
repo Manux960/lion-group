@@ -2,15 +2,22 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gruppo Imprenditoriale Multisettoriale — Lion Group</title>
-  <meta name="description" content="Lion Group: automotive di lusso, noleggio, officina, e-commerce, investimenti e real estate." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Lion Group — Gruppo Imprenditoriale Multisettoriale</title>
+  <meta name="description" content="Lion Group: automotive di lusso, noleggio, officina, e-commerce, investimenti e real estate. Il gruppo italiano che unisce eccellenza e innovazione." />
   <meta name="keywords" content="lion group, auto lusso, porsche, noleggio auto, officina, investimenti, real estate, e-commerce" />
+  <meta property="og:title" content="Lion Group — Gruppo Imprenditoriale Multisettoriale" />
+  <meta property="og:description" content="Automotive di lusso, investimenti strategici e servizi premium sotto un unico tetto." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="assets/logo/logo.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
@@ -26,10 +33,6 @@
       <div class="loader-progress"></div>
     </div>
   </div>
-
-  <!-- Custom Cursor -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- ===================== NAVIGATION ===================== -->
   <nav class="navbar" id="navbar">
@@ -51,6 +54,7 @@
         <span class="toggle-line"></span>
       </button>
     </div>
+    <div class="nav-overlay" id="navOverlay"></div>
   </nav>
 
   <!-- ===================== HERO ===================== -->
@@ -215,64 +219,73 @@
 
   <!-- ===================== PILLARS ===================== -->
   <section class="pillars" id="pillars">
-
-    <div class="pillar reveal-pillar">
-      <div class="pillar-bg">
-        <img src="https://images.pexels.com/photos/6166025/pexels-photo-6166025.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Automotive" loading="lazy" data-cms-img="pillar-0-img" />
-        <div class="pillar-overlay"></div>
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-label">I NOSTRI PILASTRI</span>
+        <h2 class="section-title">Tre Divisioni,<br /><em>Un'Unica Visione</em></h2>
       </div>
-      <div class="pillar-content">
-        <span class="pillar-num">01</span>
-        <div class="pillar-divider"></div>
-        <h3 class="pillar-title" data-cms="pillar-0-title">Automotive</h3>
-        <p class="pillar-desc" data-cms="pillar-0-desc">
-          Mobilità d'élite, cura tecnica certificata e una selezione esclusiva che trasforma ogni viaggio in un'esperienza unica.
-        </p>
-        <a href="#services" class="pillar-link">
-          Scopri
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+
+      <div class="pillars-grid">
+
+        <div class="pillar-card reveal-up" data-delay="0">
+          <div class="pillar-card-img">
+            <img src="https://images.pexels.com/photos/6166025/pexels-photo-6166025.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Automotive" loading="lazy" data-cms-img="pillar-0-img" />
+            <div class="pillar-card-img-overlay"></div>
+            <span class="pillar-card-num">01</span>
+          </div>
+          <div class="pillar-card-body">
+            <div class="pillar-card-line"></div>
+            <h3 class="pillar-card-title" data-cms="pillar-0-title">Automotive</h3>
+            <p class="pillar-card-desc" data-cms="pillar-0-desc">
+              Mobilita d'elite, cura tecnica certificata e una selezione esclusiva che trasforma ogni viaggio in un'esperienza unica.
+            </p>
+            <a href="#services" class="pillar-card-link">
+              <span>Scopri di piu</span>
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal-up" data-delay="150">
+          <div class="pillar-card-img">
+            <img src="https://images.pexels.com/photos/29453302/pexels-photo-29453302.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Investimenti" loading="lazy" data-cms-img="pillar-1-img" />
+            <div class="pillar-card-img-overlay"></div>
+            <span class="pillar-card-num">02</span>
+          </div>
+          <div class="pillar-card-body">
+            <div class="pillar-card-line"></div>
+            <h3 class="pillar-card-title" data-cms="pillar-1-title">Investimenti &amp; Real Estate</h3>
+            <p class="pillar-card-desc" data-cms="pillar-1-desc">
+              Capital allocation strategico su startup innovative e asset immobiliari di pregio. Rendimenti concreti, visione a lungo termine.
+            </p>
+            <a href="#investments" class="pillar-card-link">
+              <span>Scopri di piu</span>
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal-up" data-delay="300">
+          <div class="pillar-card-img">
+            <img src="https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Commerce" loading="lazy" data-cms-img="pillar-2-img" />
+            <div class="pillar-card-img-overlay"></div>
+            <span class="pillar-card-num">03</span>
+          </div>
+          <div class="pillar-card-body">
+            <div class="pillar-card-line"></div>
+            <h3 class="pillar-card-title" data-cms="pillar-2-title">Commerce &amp; Digital</h3>
+            <p class="pillar-card-desc" data-cms="pillar-2-desc">
+              Un marketplace premium che ridefinisce lo shopping online. Prodotti selezionati, logistica impeccabile, esperienza cliente al centro.
+            </p>
+            <a href="#contact" class="pillar-card-link">
+              <span>Scopri di piu</span>
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <div class="pillar reveal-pillar">
-      <div class="pillar-bg">
-        <img src="https://images.pexels.com/photos/29453302/pexels-photo-29453302.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Investimenti" loading="lazy" data-cms-img="pillar-1-img" />
-        <div class="pillar-overlay"></div>
-      </div>
-      <div class="pillar-content">
-        <span class="pillar-num">02</span>
-        <div class="pillar-divider"></div>
-        <h3 class="pillar-title" data-cms="pillar-1-title">Investimenti<br />&amp; Real Estate</h3>
-        <p class="pillar-desc" data-cms="pillar-1-desc">
-          Capital allocation strategico su startup innovative e asset immobiliari di pregio. Rendimenti concreti, visione a lungo termine.
-        </p>
-        <a href="#investments" class="pillar-link">
-          Scopri
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="pillar reveal-pillar">
-      <div class="pillar-bg">
-        <img src="https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Commerce" loading="lazy" data-cms-img="pillar-2-img" />
-        <div class="pillar-overlay"></div>
-      </div>
-      <div class="pillar-content">
-        <span class="pillar-num">03</span>
-        <div class="pillar-divider"></div>
-        <h3 class="pillar-title" data-cms="pillar-2-title">Commerce<br />&amp; Digital</h3>
-        <p class="pillar-desc" data-cms="pillar-2-desc">
-          Un marketplace premium che ridefinisce lo shopping online. Prodotti selezionati, logistica impeccabile, esperienza cliente al centro.
-        </p>
-        <a href="#contact" class="pillar-link">
-          Scopri
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-
   </section>
 
   <!-- ===================== INVESTMENTS ===================== -->
@@ -571,7 +584,7 @@
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p data-cms="footer-copyright">© 2025 Lion Group S.r.l. — Tutti i diritti riservati</p>
+        <p data-cms="footer-copyright">© 2026 Lion Group S.r.l. — Tutti i diritti riservati</p>
         <a href="admin/index.html" class="admin-link" title="Admin Panel">
           <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5"/><path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5"/></svg>
         </a>

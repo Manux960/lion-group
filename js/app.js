@@ -40,81 +40,41 @@ class PageLoader {
   }
 }
 
-// ── Custom Cursor ──────────────────────────────────
-class CustomCursor {
-  constructor() {
-    this.dot = $('#cursorDot');
-    this.ring = $('#cursorRing');
-    this.pos = { x: 0, y: 0 };
-    this.ringPos = { x: 0, y: 0 };
-    this.raf = 0;
-  }
 
-  init() {
-    // Skip on touch devices
-    if (window.matchMedia('(hover: none)').matches) return;
-    if (!this.dot || !this.ring) return;
-
-    document.addEventListener('mousemove', (e) => {
-      this.pos.x = e.clientX;
-      this.pos.y = e.clientY;
-    });
-
-    document.addEventListener('mouseenter', () => {
-      this.dot.style.opacity = '1';
-      this.ring.style.opacity = '1';
-    });
-
-    document.addEventListener('mouseleave', () => {
-      this.dot.style.opacity = '0';
-      this.ring.style.opacity = '0';
-    });
-
-    const hoverTargets = $$('a, button, [data-cursor-hover]');
-    hoverTargets.forEach(el => {
-      el.addEventListener('mouseenter', () => this.ring.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => this.ring.classList.remove('hovered'));
-    });
-
-    this.animate();
-  }
-
-  animate() {
-    if (this.dot) {
-      this.dot.style.left = `${this.pos.x}px`;
-      this.dot.style.top  = `${this.pos.y}px`;
-    }
-
-    const lerp = 0.12;
-    this.ringPos.x += (this.pos.x - this.ringPos.x) * lerp;
-    this.ringPos.y += (this.pos.y - this.ringPos.y) * lerp;
-
-    if (this.ring) {
-      this.ring.style.left = `${this.ringPos.x}px`;
-      this.ring.style.top  = `${this.ringPos.y}px`;
-    }
-
-    this.raf = requestAnimationFrame(() => this.animate());
-  }
-}
 
 // ── Navbar ─────────────────────────────────────────
 class Navbar {
   constructor() {
-    this.nav    = $('#navbar');
-    this.toggle = $('#navToggle');
-    this.menu   = $('#navMenu');
-    this.links  = $$('.nav-link[data-section]');
+    this.nav     = $('#navbar');
+    this.toggle  = $('#navToggle');
+    this.menu    = $('#navMenu');
+    this.overlay = $('#navOverlay');
+    this.links   = $$('.nav-link[data-section]');
     this.lastScroll = 0;
+    this.isOpen  = false;
   }
 
   init() {
     window.addEventListener('scroll', () => this.onScroll(), { passive: true });
 
-    this.toggle?.addEventListener('click', () => this.toggleMenu());
+    // Toggle button — use both click and touchend for reliability
+    this.toggle?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.toggleMenu();
+    });
 
+    // Overlay tap closes menu
+    this.overlay?.addEventListener('click', () => this.closeMenu());
+
+    // Nav links close menu
     this.menu?.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => this.closeMenu());
+    });
+
+    // Escape key closes menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isOpen) this.closeMenu();
     });
 
     window.addEventListener('scroll', () => this.updateActiveLink(), { passive: true });
@@ -131,14 +91,18 @@ class Navbar {
   }
 
   toggleMenu() {
-    const isOpen = this.menu?.classList.toggle('open');
-    this.toggle?.classList.toggle('active', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    this.isOpen = !this.isOpen;
+    this.menu?.classList.toggle('open', this.isOpen);
+    this.toggle?.classList.toggle('active', this.isOpen);
+    this.overlay?.classList.toggle('visible', this.isOpen);
+    document.body.style.overflow = this.isOpen ? 'hidden' : '';
   }
 
   closeMenu() {
+    this.isOpen = false;
     this.menu?.classList.remove('open');
     this.toggle?.classList.remove('active');
+    this.overlay?.classList.remove('visible');
     document.body.style.overflow = '';
   }
 
@@ -838,7 +802,7 @@ class LionGroupApp {
   constructor() {
 this.modules = [
       new PageLoader(),
-      new CustomCursor(),
+
       new Navbar(),
       new ScrollReveal(),
       new CounterAnimation(),
