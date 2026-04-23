@@ -156,6 +156,115 @@ class InvestmentBars {
   }
 }
 
+// ── Scroll Reveal (subtle professional entrance) ──
+class ScrollReveal {
+  constructor() {
+    this.selector = [
+      '.section-header',
+      '.service-card',
+      '.pillar-card',
+      '.invest-feature',
+      '.invest-card',
+      '.invest-img-wrap',
+      '.about-media',
+      '.about-content > *',
+      '.contact-info-item',
+      '.contact-form',
+      '.footer-col',
+      '.footer-brand'
+    ].join(',');
+    this.targets = $$(this.selector);
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          this.observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.14, rootMargin: '0px 0px -60px 0px' }
+    );
+  }
+
+  init() {
+    if (!this.targets.length) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      this.targets.forEach(el => el.classList.add('reveal', 'is-revealed'));
+      return;
+    }
+    this.targets.forEach((el) => {
+      el.classList.add('reveal');
+      const parent = el.parentElement;
+      if (parent) {
+        const siblings = Array.from(parent.children).filter(c => c.classList.contains('reveal'));
+        const idx = siblings.indexOf(el);
+        if (idx > 0) el.style.transitionDelay = `${Math.min(idx * 80, 320)}ms`;
+      }
+      this.observer.observe(el);
+    });
+  }
+}
+
+// ── Scroll Progress Bar ────────────────────────────
+class ScrollProgress {
+  constructor() {
+    this.bar = $('#scrollProgress');
+  }
+
+  init() {
+    if (!this.bar) return;
+    let ticking = false;
+    const update = () => {
+      const doc = document.documentElement;
+      const scrolled = (doc.scrollTop) / (doc.scrollHeight - doc.clientHeight);
+      this.bar.style.width = `${Math.max(0, Math.min(1, scrolled)) * 100}%`;
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      requestAnimationFrame(update);
+      ticking = true;
+    }, { passive: true });
+    update();
+  }
+}
+
+// ── Hero Parallax (subtle) ─────────────────────────
+class HeroParallax {
+  constructor() {
+    this.slider  = $('.hero-slider');
+    this.content = $('.hero-content');
+  }
+
+  init() {
+    if (!this.slider) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+
+    let ticking = false;
+    const update = () => {
+      const y = window.scrollY;
+      const h = window.innerHeight;
+      if (y < h) {
+        this.slider.style.transform  = `translate3d(0, ${y * 0.25}px, 0)`;
+        if (this.content) {
+          const fade = Math.max(0, 1 - y / (h * 0.7));
+          this.content.style.opacity   = fade.toFixed(3);
+          this.content.style.transform = `translate3d(0, ${y * 0.08}px, 0)`;
+        }
+      }
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      requestAnimationFrame(update);
+      ticking = true;
+    }, { passive: true });
+  }
+}
+
 // ── Contact Form ───────────────────────────────────
 class ContactForm {
   constructor() {
@@ -344,7 +453,10 @@ class LionGroupApp {
     this.modules = [
       new PageLoader(),
       new Navbar(),
+      new ScrollProgress(),
       new HeroSlider(),
+      new HeroParallax(),
+      new ScrollReveal(),
       new InvestmentBars(),
       new ContactForm(),
       new SmoothScroll(),

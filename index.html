@@ -17,12 +17,19 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Preload hero first image for faster LCP -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2560&q=92" fetchpriority="high" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="loading">
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- Page Loader -->
   <div class="page-loader" id="pageLoader">
@@ -60,11 +67,11 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="home">
     <div class="hero-slider">
-      <div class="hero-slide-base" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80')"></div>
-      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80')"></div>
-      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80')"></div>
-      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80')"></div>
-      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="hero-slide-base" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2560&q=92')"></div>
+      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2560&q=92')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2560&q=92')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=2560&q=92')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=2560&q=92')"></div>
       <div class="hero-overlay"></div>
     </div>
 
@@ -127,7 +134,7 @@
             </svg>
           </div>
           <h3 class="service-title" data-cms="service-title-0">Automotive</h3>
-          <p class="service-desc" data-cms="service-desc-0">Un universo di eccellenza su quattro ruote. Dalla supercar al SUV premium, Lion Group gestisce ogni aspetto della mobilita di lusso con la massima competenza e cura.</p>
+          <p class="service-desc" data-cms="service-desc-0">Servizi automotive premium a 360°: vendita, noleggio e assistenza meccanica specialistica di alto livello. Dalla supercar al SUV premium, la nostra officina certificata garantisce cura tecnica d'eccellenza su ogni veicolo.</p>
           <a href="#pillars" class="service-link">Scopri <span>&rarr;</span></a>
         </div>
 
@@ -193,7 +200,7 @@
 
         <div class="pillar-card">
           <div class="pillar-card-img">
-            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80" alt="Automotive" loading="lazy" data-cms-img="pillar-0-img" />
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=90" alt="Supercar Automotive Premium" loading="lazy" data-cms-img="pillar-0-img" />
             <div class="pillar-card-img-overlay"></div>
             <span class="pillar-card-num">01</span>
           </div>
@@ -201,7 +208,7 @@
             <div class="pillar-card-line"></div>
             <h3 class="pillar-card-title" data-cms="pillar-0-title">Automotive</h3>
             <p class="pillar-card-desc" data-cms="pillar-0-desc">
-              Mobilita d'elite, cura tecnica certificata e una selezione esclusiva che trasforma ogni viaggio in un'esperienza unica.
+              Servizi automotive premium completi: vendita, noleggio e assistenza meccanica specialistica. Officina certificata, tecnici esperti e cura d'eccellenza per ogni veicolo di pregio.
             </p>
             <a href="#services" class="pillar-card-link">
               <span>Scopri di piu</span>
@@ -212,7 +219,7 @@
 
         <div class="pillar-card">
           <div class="pillar-card-img">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Investimenti" loading="lazy" data-cms-img="pillar-1-img" />
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=90" alt="Investimenti" loading="lazy" data-cms-img="pillar-1-img" />
             <div class="pillar-card-img-overlay"></div>
             <span class="pillar-card-num">02</span>
           </div>
@@ -231,7 +238,7 @@
 
         <div class="pillar-card">
           <div class="pillar-card-img">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Commerce" loading="lazy" data-cms-img="pillar-2-img" />
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=90" alt="Commerce" loading="lazy" data-cms-img="pillar-2-img" />
             <div class="pillar-card-img-overlay"></div>
             <span class="pillar-card-num">03</span>
           </div>
@@ -324,7 +331,7 @@
             </div>
           </div>
           <div class="invest-img-wrap">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Luxury Villa" loading="lazy" data-cms-img="invest-img" />
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=90" alt="Luxury Villa" loading="lazy" data-cms-img="invest-img" />
           </div>
         </div>
 
@@ -484,7 +491,7 @@
             <img src="assets/logo/logo.png" alt="Lion Group" class="footer-logo" />
             <p class="footer-tagline" data-cms="footer-tagline">Excellence Beyond Limits.</p>
             <p class="footer-desc" data-cms="footer-desc">
-              Il gruppo italiano che unisce automotive di lusso, investimenti strategici e servizi premium sotto un unico tetto.
+              Il gruppo italiano che unisce automotive di lusso, assistenza meccanica premium, investimenti strategici e servizi d'eccellenza sotto un unico tetto.
             </p>
             <div class="social-links">
               <a href="#" class="social-link" aria-label="Instagram">
@@ -514,13 +521,13 @@
           </div>
 
           <div class="footer-col">
-            <h4>Servizi</h4>
+            <h4>Assistenza Premium</h4>
             <ul>
-              <li><a href="#services">Officina Meccanica</a></li>
-              <li><a href="#services">Centro Revisioni</a></li>
-              <li><a href="#services">Gommista</a></li>
-              <li><a href="#services">Carrozzeria</a></li>
-              <li><a href="#contact">E-Commerce</a></li>
+              <li><a href="#services">Officina Meccanica Specialistica</a></li>
+              <li><a href="#services">Diagnosi Avanzata &amp; Tuning</a></li>
+              <li><a href="#services">Centro Revisioni Certificato</a></li>
+              <li><a href="#services">Carrozzeria d'Eccellenza</a></li>
+              <li><a href="#services">Service Supercar &amp; Luxury</a></li>
             </ul>
           </div>
 

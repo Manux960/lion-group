@@ -131,6 +131,20 @@ input, textarea, select {
   color: var(--gold);
 }
 
+/* ── Scroll Progress Bar ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+  z-index: 10001;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(201,169,110,0.5);
+  transition: width 0.08s linear;
+}
+
 /* ── 4. Page Loader ── */
 .page-loader {
   position: fixed;
@@ -220,6 +234,7 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
   background: rgba(8, 8, 8, 0.95);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(201,169,110,0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .nav-container {
@@ -537,8 +552,9 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.35) 35%, rgba(5,5,5,0.5) 65%, rgba(5,5,5,0.8) 100%),
-    linear-gradient(90deg, rgba(5,5,5,0.35) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 55% at 50% 50%, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.15) 45%, transparent 80%),
+    linear-gradient(180deg, rgba(5,5,5,0.65) 0%, rgba(5,5,5,0.35) 35%, rgba(5,5,5,0.55) 65%, rgba(5,5,5,0.85) 100%),
+    linear-gradient(90deg, rgba(5,5,5,0.4) 0%, transparent 55%);
   z-index: 2;
 }
 
@@ -557,8 +573,8 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
 .hero-content::before {
   content: '';
   position: absolute;
-  inset: -80px -60px;
-  background: radial-gradient(ellipse 70% 60% at 50% 48%, rgba(0,0,0,0.5) 0%, transparent 100%);
+  inset: -120px -80px;
+  background: radial-gradient(ellipse 70% 60% at 50% 48%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 45%, transparent 100%);
   pointer-events: none;
   z-index: -1;
 }
@@ -1817,10 +1833,33 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
   }
 
   .nav-cta {
-    margin-top: 16px;
+    margin-top: 28px;
+    padding: 16px 28px;
+    background: var(--gold);
+    color: var(--black) !important;
+    border: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold) !important;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 28px rgba(201,169,110,0.35);
+    width: 100%;
+  }
+
+  .nav-cta:hover,
+  .nav-cta:active {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    color: var(--black) !important;
+  }
+
+  .nav-cta::after {
+    display: none;
   }
 
   .nav-link {
@@ -2074,9 +2113,94 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
 
 /* Better image rendering */
 img {
-  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.hero-slide,
+.hero-slide-base {
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+  will-change: opacity;
+  backface-visibility: hidden;
+}
+
+.pillar-card-img img,
+.invest-img-wrap img {
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+}
+
+/* ── 22. Scroll Reveal Transitions ── */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Cards get a slightly softer entrance with a light scale */
+.service-card.reveal,
+.pillar-card.reveal,
+.invest-card.reveal {
+  transform: translate3d(0, 36px, 0) scale(0.985);
+}
+
+.service-card.reveal.is-revealed,
+.pillar-card.reveal.is-revealed,
+.invest-card.reveal.is-revealed {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Section headers and about content — gentler motion */
+.section-header.reveal,
+.about-content > *.reveal {
+  transform: translate3d(0, 18px, 0);
+}
+
+/* Hero parallax performance hint */
+.hero-slider {
+  will-change: transform;
+}
+
+.hero-content {
+  will-change: transform, opacity;
+}
+
+/* Gentle gold glow accent when hovering service cards */
+.service-card {
+  position: relative;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(201,169,110,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.service-card:hover::after {
+  opacity: 1;
+}
+
+/* Pillar card image zoom on hover */
+.pillar-card-img img {
+  transition: transform 1.2s var(--ease-out);
+}
+
+.pillar-card:hover .pillar-card-img img {
+  transform: scale(1.06);
 }
 
 /* Smooth scroll for reduced motion preference */
@@ -2093,6 +2217,12 @@ img {
 
   .hero-slide {
     transition: opacity 0.3s ease;
+  }
+
+  .reveal,
+  .reveal.is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

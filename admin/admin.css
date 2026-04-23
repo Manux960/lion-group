@@ -198,6 +198,27 @@ input, textarea, select { font-family: var(--font); }
 .login-back:hover { color: var(--gold); }
 .login-back svg { width: 14px; height: 14px; }
 
+.login-hint {
+  margin-top: 24px;
+  padding: 12px 14px;
+  background: rgba(201,169,110,0.06);
+  border: 1px solid rgba(201,169,110,0.18);
+  border-radius: 2px;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: var(--gray-3);
+  text-align: center;
+}
+
+.login-hint code {
+  font-family: 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.72rem;
+  color: var(--gold);
+  background: rgba(201,169,110,0.08);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
 /* ── DASHBOARD LAYOUT ── */
 .dashboard-page {
   display: flex;
