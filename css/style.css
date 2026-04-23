@@ -366,67 +366,59 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
-/* ── 7. Buttons ── */
+/* ── 7. Buttons (Bespoke Minimalist) ── */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 15px;
   font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.35em; /* Spaziatura estrema per lusso */
   text-transform: uppercase;
-  padding: 16px 36px;
+  padding: 22px 50px;
   border: 1px solid transparent;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  border-radius: 0; /* Angoli squadrati = più professionale */
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   position: relative;
+  z-index: 1;
 }
 
 .btn svg {
-  margin-left: 8px;
-  vertical-align: middle;
-  transition: transform 0.3s var(--ease-out);
+  width: 14px;
+  height: 14px;
+  transition: transform 0.5s var(--ease-out);
 }
-
-.btn-primary:hover svg {
-  transform: translateX(4px);
-}
-
 
 .btn-primary {
   background: var(--gold);
   color: var(--black);
   border-color: var(--gold);
-  padding: 14px 32px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  border-radius: 2px;
 }
 
 .btn-primary:hover {
-  background: var(--gold-light);
-  border-color: var(--gold-light);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(201,169,110,0.35);
+  background: var(--black);
+  color: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-5px);
+}
+
+.btn-primary:hover svg {
+  transform: translateX(8px);
 }
 
 .btn-ghost {
   background: transparent;
   color: var(--white);
-  border-color: rgba(255,255,255,0.4);
-  padding: 14px 32px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  border-radius: 2px;
-  transition: all 0.3s var(--ease-out);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .btn-ghost:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  transform: translateY(-2px);
-  text-shadow: none;
+  border-color: var(--white);
+  background: var(--white);
+  color: var(--black);
+  transform: translateY(-5px);
 }
 
 .btn-full {
@@ -584,12 +576,12 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   margin-bottom: 44px;
   font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.5em;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.65em; /* Lusso estremo */
   text-transform: uppercase;
   color: var(--gold);
   opacity: 0;
@@ -602,12 +594,10 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
 
 .eyebrow-line {
   display: inline-block;
-  width: 52px;
+  width: 40px;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold));
-}
-.eyebrow-line:last-child {
-  background: linear-gradient(to left, transparent, var(--gold));
+  background: currentColor;
+  opacity: 0.2;
 }
 
 
@@ -660,7 +650,7 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
 
 /* Thin gold rule between title and subtitle */
 .hero-divider {
-  width: 56px;
+  width: 60px;
   height: 1px;
   background: var(--gold);
   margin: 40px auto 36px;
@@ -671,15 +661,16 @@ a, button, [role="button"], input[type="submit"], .service-card, .pillar, .socia
 /* Subtitle */
 .hero-sub {
   font-family: var(--font-sans);
-  font-size: clamp(0.72rem, 1.1vw, 0.88rem);
-  color: rgba(255,255,255,0.65);
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  max-width: 500px;
+  font-size: 1.1rem;
+  color: var(--gray-300);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: none; /* Rimosso uppercase per più eleganza */
+  max-width: 650px;
   margin: 0 auto 52px;
-  text-shadow: 0 2px 15px rgba(0,0,0,0.8);
-  line-height: 1.9;
+  line-height: 2;
+  opacity: 0;
+  animation: softFadeIn 1s ease 1.2s forwards;
 }
 
 /* CTA */
